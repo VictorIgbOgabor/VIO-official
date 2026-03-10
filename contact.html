@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact VIO — start your web design project with a premium creative agency for creative professionals worldwide." />
+  <title>Contact — VIO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>body{background:#080808;color:#f5f0eb;font-family:sans-serif;margin:0;} .nav__mobile{display:none;} .nav__mobile.open{display:flex;} img{max-width:100%;}</style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo"><img src="assets/vio-logo.png" alt="VIO" class="nav__logo-img" /></a>
+    <ul class="nav__links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="nav__cta">Start a Project</a></li>
+    </ul>
+    <div class="nav__burger"><span></span><span></span><span></span></div>
+  </nav>
+  <div class="nav__mobile">
+    <button class="nav__mobile-close">&times;</button>
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Start a Project</a>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header__bg"></div>
+    <div class="section-tag">Get in Touch</div>
+    <h1 class="page-header__title reveal">Start a <em>Project</em></h1>
+    <p class="page-header__sub reveal">Tell us about what you are building and we will get back to you within 24 hours.</p>
+  </div>
+
+  <!-- CONTACT -->
+  <section>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-info__item reveal">
+          <div class="contact-info__label">Email</div>
+          <div class="contact-info__value"><a href="mailto:ogaborvictorigb@mail.com" style="color: inherit;">ogaborvictorigb@mail.com</a></div>
+        </div>
+        <div class="contact-info__item reveal reveal-delay-1">
+          <div class="contact-info__label">Phone</div>
+          <div class="contact-info__value"><a href="tel:+2348146589595" style="color: inherit;">+234 814 658 9595</a></div>
+        </div>
+        <div class="contact-info__item reveal reveal-delay-2">
+          <div class="contact-info__label">Location</div>
+          <div class="contact-info__value">Nigeria, Worldwide</div>
+        </div>
+        <div class="contact-info__item reveal reveal-delay-3">
+          <div class="contact-info__label">Response Time</div>
+          <div class="contact-info__value">Within 24 Hours</div>
+        </div>
+        <div class="reveal" style="margin-top: 2rem;">
+          <div class="contact-info__label" style="margin-bottom: 1rem;">Follow VIO</div>
+          <div class="footer__social">
+            <a href="#" class="footer__social-link">IG</a>
+            <a href="#" class="footer__social-link">TW</a>
+            <a href="#" class="footer__social-link">LN</a>
+            <a href="#" class="footer__social-link">BE</a>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form reveal" id="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="John Doe" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="john@email.com" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="service">Service Interested In</label>
+          <select id="service" name="service">
+            <option value="">Select a Service</option>
+            <option value="portfolio">Portfolio Website</option>
+            <option value="personal-brand">Personal Brand Site</option>
+            <option value="ecommerce">E-Commerce Store</option>
+            <option value="landing-page">Landing Page</option>
+            <option value="web-app">Web Application</option>
+            <option value="strategy">Creative Strategy</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="budget">Estimated Budget</label>
+          <select id="budget" name="budget">
+            <option value="">Select Budget Range</option>
+            <option value="starter">Starter (Under $300)</option>
+            <option value="standard">Standard ($300 to $800)</option>
+            <option value="premium">Premium ($800 to $2000)</option>
+            <option value="enterprise">Enterprise ($2000+)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Tell Us About Your Project</label>
+          <textarea id="message" name="message" placeholder="Describe your project, goals, timeline, and anything else we should know..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; padding: 1.1rem;">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section style="background: var(--black-2);">
+    <div class="section-tag reveal">Common Questions</div>
+    <h2 class="section-title reveal">Before You <em>Reach Out</em></h2>
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 4rem;">
+      <div style="background: var(--black-2); padding: 2.5rem; border: none;" class="reveal">
+        <h3 style="font-family: var(--font-sans); font-size: 0.9rem; font-weight: 700; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">How long does a project take?</h3>
+        <p style="font-size: 0.88rem; color: var(--white-dim); line-height: 1.8;">Most portfolio and personal brand websites take 1 to 3 weeks. More complex projects like web apps or e-commerce stores typically take 3 to 6 weeks. We will give you a clear timeline before we start.</p>
+      </div>
+      <div style="background: var(--black-2); padding: 2.5rem;" class="reveal reveal-delay-1">
+        <h3 style="font-family: var(--font-sans); font-size: 0.9rem; font-weight: 700; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">Do you work with international clients?</h3>
+        <p style="font-size: 0.88rem; color: var(--white-dim); line-height: 1.8;">Yes. We work with clients globally. All communication is done online via email and video calls, and payments are accepted in multiple currencies including USD.</p>
+      </div>
+      <div style="background: var(--black-2); padding: 2.5rem;" class="reveal">
+        <h3 style="font-family: var(--font-sans); font-size: 0.9rem; font-weight: 700; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">What do I need to get started?</h3>
+        <p style="font-size: 0.88rem; color: var(--white-dim); line-height: 1.8;">Just a clear idea of what you need and your goals. We will handle everything else: design, content guidance, development, and launch. You bring the vision, we bring the execution.</p>
+      </div>
+      <div style="background: var(--black-2); padding: 2.5rem;" class="reveal reveal-delay-1">
+        <h3 style="font-family: var(--font-sans); font-size: 0.9rem; font-weight: 700; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">Do you offer maintenance after launch?</h3>
+        <p style="font-size: 0.88rem; color: var(--white-dim); line-height: 1.8;">Yes. We offer post-launch support packages for clients who need ongoing updates, content changes, and technical maintenance. Ask us about this when you reach out.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div>
+        <div class="footer__brand-name"><img src="assets/vio-logo.png" alt="VIO" style="height:40px;width:auto;filter:brightness(0) invert(1);opacity:0.9;" /></div>
+        <p class="footer__brand-body">Premium web design and development for creative professionals and freelancers worldwide.</p>
+        <div class="footer__social">
+          <a href="#" class="footer__social-link">IG</a>
+          <a href="#" class="footer__social-link">TW</a>
+          <a href="#" class="footer__social-link">LN</a>
+          <a href="#" class="footer__social-link">BE</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer__col-title">Navigation</div>
+        <ul class="footer__col-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="portfolio.html">Portfolio</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Services</div>
+        <ul class="footer__col-links">
+          <li><a href="services.html">Portfolio Websites</a></li>
+          <li><a href="services.html">Personal Brand Sites</a></li>
+          <li><a href="services.html">E-Commerce Stores</a></li>
+          <li><a href="services.html">Landing Pages</a></li>
+          <li><a href="services.html">Creative Strategy</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Contact</div>
+        <ul class="footer__col-links">
+          <li><a href="mailto:ogaborvictorigb@mail.com">ogaborvictorigb@mail.com</a></li>
+          <li><a href="tel:+2348146589595">+234 814 658 9595</a></li>
+          <li><a href="contact.html">Start a Project</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2025 <span>VIO</span>. All rights reserved.</p>
+      <p class="footer__copy">Design. Strategy. <span>Clarity.</span></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
