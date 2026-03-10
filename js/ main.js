@@ -1,151 +1,124 @@
-// =========================================
-// VIO OFFICIAL — Main JavaScript (Robust)
-// =========================================
+/* =========================================
+   VIO OFFICIAL — Main JavaScript
+   ========================================= */
 
-(function () {
-  'use strict';
+/* ---- Reveal Animation ---- */
+function initReveal() {
+  const revealEls = document.querySelectorAll('.reveal');
 
-  function $(selector, context) { return (context || document).querySelector(selector); }
-  function $$(selector, context) { return Array.from((context || document).querySelectorAll(selector)); }
+  if (!revealEls.length) return;
 
-  function onReady(fn) {
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', fn);
-    } else { fn(); }
+  // Fallback: if IntersectionObserver not supported, show all immediately
+  if (!('IntersectionObserver' in window)) {
+    revealEls.forEach(el => el.classList.add('visible'));
+    return;
   }
 
-  // Nav scroll
-  function initNavScroll() {
-    var nav = $('.nav');
-    if (!nav) return;
-    var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 60); };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  }
-
-  // Mobile menu
-  function initMobileMenu() {
-    var burger = $('.nav__burger');
-    var menu = $('.nav__mobile');
-    var closeBtn = $('.nav__mobile-close');
-    if (!burger || !menu) return;
-
-    function openMenu() { menu.classList.add('open'); document.body.style.overflow = 'hidden'; }
-    function closeMenu() { menu.classList.remove('open'); document.body.style.overflow = ''; }
-
-    burger.addEventListener('click', openMenu);
-    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
-    menu.addEventListener('click', function (e) { if (e.target === menu) closeMenu(); });
-    $$('a', menu).forEach(function (l) { l.addEventListener('click', closeMenu); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
-  }
-
-  // Scroll reveal with IntersectionObserver fallback
-  function initReveal() {
-    var els = $$('.reveal');
-    if (!els.length) return;
-    if ('IntersectionObserver' in window) {
-      var obs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) { entry.target.classList.add('visible'); obs.unobserve(entry.target); }
-        });
-      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-      els.forEach(function (el) { obs.observe(el); });
-    } else {
-      els.forEach(function (el) { el.classList.add('visible'); });
-    }
-  }
-
-  // Active nav link
-  function initActiveNav() {
-    var current = (window.location.pathname.split('/').pop() || 'index.html');
-    $$('.nav__links a, .nav__mobile a').forEach(function (link) {
-      var href = (link.getAttribute('href') || '').split('/').pop();
-      if (href === current) link.classList.add('active');
-    });
-  }
-
-  // Hero parallax
-  function initParallax() {
-    var el = $('.hero__portrait');
-    if (!el) return;
-    var ticking = false;
-    window.addEventListener('scroll', function () {
-      if (!ticking) {
-        requestAnimationFrame(function () {
-          el.style.transform = 'translateY(' + (window.scrollY * 0.15) + 'px)';
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
-  }
-
-  // Ticker clone for infinite scroll
-  function initTicker() {
-    var el = $('.ticker__inner');
-    if (!el || el.dataset.cloned) return;
-    el.innerHTML += el.innerHTML;
-    el.dataset.cloned = 'true';
-  }
-
-  // Contact form
-  function initContactForm() {
-    var form = document.getElementById('contact-form');
-    if (!form) return;
-    form.addEventListener('submit', function (e) {
-      var action = form.getAttribute('action') || '';
-      var btn = form.querySelector('button[type="submit"]');
-      if (action.indexOf('your-form-id') !== -1) {
-        e.preventDefault();
-        if (btn) {
-          btn.textContent = 'Connect Formspree to Enable';
-          btn.style.background = '#1a4a6b';
-          setTimeout(function () { btn.textContent = 'Send Message'; btn.style.background = ''; }, 3000);
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
         }
-        return;
-      }
-      if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
-    });
-  }
-
-  // Portfolio filter
-  function initPortfolioFilter() {
-    var btns = $$('.filter-btn');
-    if (!btns.length) return;
-    btns.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        btns.forEach(function (b) { b.classList.remove('active'); });
-        btn.classList.add('active');
       });
-    });
-  }
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  );
 
-  // Smooth anchor scroll
-  function initSmoothScroll() {
-    $$('a[href^="#"]').forEach(function (a) {
-      a.addEventListener('click', function (e) {
-        var id = a.getAttribute('href');
-        if (id === '#') return;
-        var target = document.querySelector(id);
-        if (!target) return;
-        e.preventDefault();
-        var offset = ($('.nav') ? $('.nav').offsetHeight : 80) + 20;
-        window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
-      });
-    });
-  }
+  revealEls.forEach(el => observer.observe(el));
+}
 
-  onReady(function () {
-    initNavScroll();
-    initMobileMenu();
-    initReveal();
-    initActiveNav();
-    initParallax();
-    initTicker();
-    initContactForm();
-    initPortfolioFilter();
-    initSmoothScroll();
+/* ---- Nav Scroll Effect ---- */
+function initNav() {
+  const nav = document.getElementById('nav');
+  if (!nav) return;
+
+  const onScroll = () => {
+    if (window.scrollY > 60) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // run on load
+}
+
+/* ---- Mobile Menu ---- */
+function initMobileMenu() {
+  const burger = document.querySelector('.nav__burger');
+  const mobileMenu = document.querySelector('.nav__mobile');
+  const closeBtn = document.querySelector('.nav__mobile-close');
+
+  if (!burger || !mobileMenu) return;
+
+  burger.addEventListener('click', () => {
+    mobileMenu.classList.add('open');
+    document.body.style.overflow = 'hidden';
   });
 
-})();
+  const closeMenu = () => {
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+
+  // Close on link click
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close on backdrop click
+  mobileMenu.addEventListener('click', (e) => {
+    if (e.target === mobileMenu) closeMenu();
+  });
+}
+
+/* ---- Active Nav Link ---- */
+function initActiveLink() {
+  const links = document.querySelectorAll('.nav__links a');
+  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+
+  links.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPath) {
+      link.classList.add('active');
+    }
+  });
+}
+
+/* ---- Portfolio Filter ---- */
+function initFilter() {
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  if (!filterBtns.length) return;
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+}
+
+/* ---- Ticker Duplicate (seamless loop) ---- */
+function initTicker() {
+  const inner = document.querySelector('.ticker__inner');
+  if (!inner) return;
+
+  // Clone children for seamless infinite scroll
+  const items = inner.innerHTML;
+  inner.innerHTML = items + items;
+}
+
+/* ---- Init All ---- */
+document.addEventListener('DOMContentLoaded', () => {
+  initReveal();
+  initNav();
+  initMobileMenu();
+  initActiveLink();
+  initFilter();
+  initTicker();
+}); 
